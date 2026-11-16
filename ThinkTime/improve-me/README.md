@@ -21,7 +21,8 @@ what you actually *did*. But 2,000+ transcripts don't fit in a context.
 
 `scripts/collect_signals.py` resolves that: it parses the logs and emits ~35 KB of
 derived numbers, so one reasoning context works from measurements instead of vibes.
-Read-only, no network, ~2s.
+Read-only except one `git fetch origin` per repo, so commit counts use `origin/<default>`
+rather than a stale local branch.
 
 ```bash
 python3 ThinkTime/improve-me/scripts/collect_signals.py --days 30 > signals.json
@@ -31,7 +32,7 @@ python3 ThinkTime/improve-me/scripts/collect_signals.py --days 30 > signals.json
 |---|---|---|
 | `--days N` | 30 | analysis window |
 | `--max-files N` | 250 | transcript cap, newest first |
-| `--repos ...` | flagship repos | override repos scanned |
+| `--repos ...` | paths in `$WEEKLY_WRAPUP_PROJECTS` (default `~/WeeklyWrapup/projects.json`), else a built-in flagship list | override repos scanned |
 
 ## The six lenses
 

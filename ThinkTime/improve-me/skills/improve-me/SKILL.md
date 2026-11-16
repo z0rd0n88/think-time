@@ -51,7 +51,8 @@ python3 "${CLAUDE_PLUGIN_ROOT}/improve-me/scripts/collect_signals.py" \
 Read the JSON. It is compact by design (~35 KB) so one context can hold the
 derived numbers instead of the raw logs. It parses `history.jsonl`, the newest
 session transcripts under `projects/**/*.jsonl`, `settings.json`, the plans/tasks
-scratch dirs, every flagship git repo, and the summaries/guides/memory corpus.
+scratch dirs, every repo in the weekly wrapup's `projects.json` (fetched, measured on
+`origin/<default>`), and the summaries/guides/memory corpus.
 
 Flags: `--days N` (window, default 30), `--max-files N` (transcript cap, default
 250, newest first), `--repos ...` (override the repo list).
@@ -140,7 +141,7 @@ Exception: writing the report file itself, and `/tmp` scratch.
 | "I listed `summaries/`, that counts" | A count is not content. Read the files. |
 | "settings.json tells me enough" | It tells you intent. Transcripts tell you behaviour. The gap between them *is* the finding. |
 | "This rule needs transcripts, skip it" | The script already measured it. Read `own_rule_violations`. |
-| "The other repos aren't really in scope" | `CLAUDE.md` names four flagship repos. The script reads all of them. |
+| "The other repos aren't really in scope" | `projects.json` lists the repos you work in. The script reads all of them. |
 | "Cleaning up 162 stale tasks seems good" | Seems is not measured. State the harm or drop it. |
 | "I'll just fix the easy ones while I'm here" | Step 6. Propose and stop. |
 | "No hits, so that area is clean" | Or the pattern never fired. Verify before claiming a pass. |
