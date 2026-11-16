@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Collect behavioural signals about how this machine actually uses Claude Code.
 
-Read-only. No network. Emits one compact JSON document on stdout so a single
-reasoning context can rank findings over *derived numbers* instead of trying to
-read 2000+ session transcripts.
+Read-only, except one `git fetch origin` per repo so default-branch numbers are
+measured on `origin/<default>`, not a stale local branch. Emits one compact JSON
+document on stdout so a single reasoning context can rank findings over
+*derived numbers* instead of trying to read 2000+ session transcripts.
+
+The repo list comes from the weekly wrapup's projects.json ($WEEKLY_WRAPUP_PROJECTS,
+default ~/WeeklyWrapup/projects.json); DEFAULT_REPOS applies only when that is absent.
 
     python3 collect_signals.py --days 30 > signals.json
     python3 collect_signals.py --days 90 --repos /home/alex/BotHaus
@@ -30,10 +34,21 @@ CLAUDE = Path(os.environ.get("CLAUDE_CONFIG_DIR", HOME / ".claude"))
 DEFAULT_REPOS = [
     CLAUDE,
     HOME / "BotHaus",
-    HOME / "VistaMobileBE",
+    HOME / "vista-root" / "vbe",
     HOME / "TradingBots",
     HOME / "Z0rd0nZords",
 ]
+PROJECTS_JSON = Path(
+    os.environ.get("WEEKLY_WRAPUP_PROJECTS", HOME / "WeeklyWrapup" / "projects.json")
+)
+
+
+def default_repos() -> list[Path]:
+    try:
+        projects = json.loads(PROJECTS_JSON.read_text())["projects"]
+        return [Path(p["path"]) for p in projects]
+    except Exception:
+        return DEFAULT_REPOS
 
 # --------------------------------------------------------------------------
 # TUNABLE — these encode what *you* consider evidence of your own friction.
@@ -363,6 +378,13 @@ def analyse_repos(repos: list[Path], days: int) -> dict:
         if head:
             default = head.rsplit("/", 1)[-1]
         r["default_branch"] = default
+        # A primary checkout is often days behind origin; measuring local
+        # `main` undercounts. Fall back to the local branch only when offline
+        # or there is no remote.
+        _run(["git", "fetch", "--quiet", "origin"], repo)
+        if _run(["git", "rev-parse", "--verify", "--quiet", f"origin/{default}"], repo):
+            default = f"origin/{default}"
+        r["measured_ref"] = default
 
         # Conformance MUST be window-scoped. A lifetime sample reaches back into
         # eras when the rule did not exist yet (this repo allowed direct commits
@@ -418,16 +440,18 @@ def analyse_repos(repos: list[Path], days: int) -> dict:
             b.strip().lstrip("* ")
             for b in _run(["git", "branch", "--merged", default], repo).splitlines()
         ]
-        r["merged_branches_not_deleted"] = [b for b in merged if b and b != default][
-            :10
-        ]
+        r["merged_branches_not_deleted"] = [
+            b for b in merged if b and b != r["default_branch"]
+        ][:10]
 
         r["commits_in_window"] = len(
-            _run(["git", "log", since, "--no-merges", "--pretty=%h"], repo).splitlines()
+            _run(
+                ["git", "log", since, "--no-merges", "--pretty=%h", default], repo
+            ).splitlines()
         )
         r["reverts_in_window"] = len(
             _run(
-                ["git", "log", since, "--pretty=%s", "--grep=^Revert"], repo
+                ["git", "log", since, "--pretty=%s", "--grep=^Revert", default], repo
             ).splitlines()
         )
         out[repo.name or str(repo)] = r
@@ -486,7 +510,7 @@ def main() -> int:
     args = ap.parse_args()
 
     cutoff = time.time() - args.days * 86400
-    repos = [Path(r) for r in args.repos] if args.repos else DEFAULT_REPOS
+    repos = [Path(r) for r in args.repos] if args.repos else default_repos()
 
     prompts = analyse_prompts(cutoff)
     transcripts = analyse_transcripts(cutoff, args.max_files)
