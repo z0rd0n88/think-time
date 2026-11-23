@@ -1,7 +1,7 @@
 {
-  "name": "ThinkTime",
+  "name": "think-time",
   "description": "Thinking and ideation skills for Claude Code: idea generation, panel thinking, design critique, SWOT analysis, comparisons, hackathon idea generation and judging, and usage reflection.",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "author": {
     "name": "z0rd0n88"
   },

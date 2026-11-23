@@ -18,12 +18,12 @@ Every matrix cell is a round-robin duel record (W-D-L) judged in both presentati
 ## Usage
 
 ```
-/ThinkTime:idea-nebula-product <topic...> [--context <path>] [--wild <n>]
+/think-time:idea-nebula-product <topic...> [--context <path>] [--wild <n>]
              [--banlist] [--no-check] [--check-top <n>] [--plain]
              [--write-to <path>] [--force]
 ```
 
-Zero-ceremony default: `/ThinkTime:idea-nebula-product tools for people learning to cook at home` runs the full pipeline — four generators, prune, three axis judges, user-check on the top 5, matrix report.
+Zero-ceremony default: `/think-time:idea-nebula-product tools for people learning to cook at home` runs the full pipeline — four generators, prune, three axis judges, user-check on the top 5, matrix report.
 
 ## Pipeline
 
@@ -53,6 +53,6 @@ SAVE      offers to write the report (default
 ## Install
 
 ```
-claude plugin marketplace add z0rd0n88/ThinkTime
-claude plugin install ThinkTime@thinktime
+claude plugin marketplace add z0rd0n88/think-time
+claude plugin install think-time@thinktime
 ```

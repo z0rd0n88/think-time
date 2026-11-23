@@ -1,6 +1,6 @@
 ---
 name: i-cant-even
-description: 'User-invoked only; run when the user types `/ThinkTime:i-cant-even` or says "i cant even". Evaluates a design choice in project context and gives a recommendation with trade-offs.'
+description: 'User-invoked only; run when the user types `/think-time:i-cant-even` or says "i cant even". Evaluates a design choice in project context and gives a recommendation with trade-offs.'
 argument-hint: "[brief description of the design question]"
 allowed-tools:
   - Bash
@@ -28,7 +28,7 @@ output is a memo, not code — and hands off implementation to a TDD dev skill.
 
 | Option | Values | Default | Effect |
 |---|---|---|---|
-| `<design question>` (free text after `/ThinkTime:i-cant-even`) | any text describing the design decision to evaluate | none — required | Sets the decision that orientation, grilling, and the persona panel run against |
+| `<design question>` (free text after `/think-time:i-cant-even`) | any text describing the design decision to evaluate | none — required | Sets the decision that orientation, grilling, and the persona panel run against |
 
 Produce a grounded design recommendation for a non-trivial software decision. Advisory only — output is a memo, not code. Hand off to your TDD dev orchestrator (`tdd`, `feature-dev`, or a multi-agent dev skill if you have one) for implementation.
 
@@ -121,7 +121,7 @@ via `Write`/`Edit` per their answer.
 
 ## Invocation
 
-User-triggered only. Valid triggers: `/ThinkTime:i-cant-even`, "i-cant-even", "i cant even".
+User-triggered only. Valid triggers: `/think-time:i-cant-even`, "i-cant-even", "i cant even".
 
 For unprompted design-shaped questions, answer inline. You may suggest the skill in one sentence and wait — do not start the workflow until the user agrees.
 
