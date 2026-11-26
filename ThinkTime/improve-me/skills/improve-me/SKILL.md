@@ -116,7 +116,7 @@ rule that needs a `PreToolUse` hook.
 
 ### 5. Write the report
 
-`~/Improvements/<YYYY-MM-DD>/report.md`, containing:
+`~/Projects/Improvements/<YYYY-MM-DD>/report.md`, containing:
 
 1. **Executive summary** — 3–5 sentences, leading with the single highest-value finding.
 2. **Findings**, ranked, each with the four fields above.
