@@ -1,5 +1,7 @@
 # ThinkTime
 
+*The Center for Kids Who Can't Think Good and Want to Do Other Stuff Good Too.*
+
 **Multi-agent thinking skills for Claude Code: ideation, critique, judging and benchmarking, built to resist the ways LLMs fool themselves.**
 
 [![Version](https://img.shields.io/badge/version-1.5.1-blue)](.claude-plugin/marketplace.json)
