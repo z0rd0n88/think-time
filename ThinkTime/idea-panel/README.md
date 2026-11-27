@@ -8,7 +8,7 @@ Generative sibling of [`multi-agent-review`](https://github.com/z0rd0n88/my-skil
 
 | Skill | What it does | Command |
 |---|---|---|
-| [`idea-panel`](./skills/idea-panel/SKILL.md) | Spawns N lens agents in parallel over a topic, each generating candidate ideas from a distinct mental model, then a synthesizer merges them into one ranked, deduped report. Read-only. | `/ThinkTime:idea-panel` |
+| [`idea-panel`](./skills/idea-panel/SKILL.md) | Spawns N lens agents in parallel over a topic, each generating candidate ideas from a distinct mental model, then a synthesizer merges them into one ranked, deduped report. Read-only. | `/think-time:idea-panel` |
 
 ## Default lens roster
 
@@ -23,16 +23,16 @@ Any `thinking-<name>` slug can be swapped in via `--lenses`, and named specialis
 
 ```bash
 claude plugin marketplace add z0rd0n88/think-time
-claude plugin install ThinkTime@thinktime
+claude plugin install think-time@thinktime
 ```
 
 ## Use
 
 ```bash
-/ThinkTime:idea-panel genetic security — new project/product directions
-/ThinkTime:idea-panel loyalty rewards for indie coffee shops --panel-size 3
-/ThinkTime:idea-panel developer tooling --lenses thinking-triz,thinking-second-order,thinking-jobs-to-be-done
-/ThinkTime:idea-panel authentication UX --context docs/research/ --write-to docs/ideas/auth-panel.md
+/think-time:idea-panel genetic security — new project/product directions
+/think-time:idea-panel loyalty rewards for indie coffee shops --panel-size 3
+/think-time:idea-panel developer tooling --lenses thinking-triz,thinking-second-order,thinking-jobs-to-be-done
+/think-time:idea-panel authentication UX --context docs/research/ --write-to docs/ideas/auth-panel.md
 ```
 
 The shortlist is written to `docs/ideas/<YYYY-MM-DD>-<topic-slug>.md` by default; `--write-to` only overrides the path, and `--no-write` opts out.

@@ -11,7 +11,7 @@ grading, blind judging, statistics/reporting, `verify-fixture`, A-vs-A
 calibration and two fixtures. The plugin registers
 [`skills/versus/SKILL.md`](skills/versus/SKILL.md) plus
 [`commands/versus-compare.md`](commands/versus-compare.md), both listed in
-`ThinkTime/.claude-plugin/plugin.json`. `/ThinkTime:versus-compare` is the slash
+`ThinkTime/.claude-plugin/plugin.json`. `/think-time:versus-compare` is the slash
 command; the CLI below is still the execution surface and the skill drives it.
 
 The original design spec (`docs/design/2026-07-26-versus-compare-spec.md`) is

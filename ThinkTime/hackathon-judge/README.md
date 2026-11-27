@@ -16,8 +16,8 @@ limits, whether the hard part has a library, whether the data exists — not
 market evidence.
 
 - Skill: `skills/hackathon-judge/SKILL.md`
-- Command: `/ThinkTime:hackathon-judge [idea] + RULES AND CONSTRAINTS block`
+- Command: `/think-time:hackathon-judge [idea] + RULES AND CONSTRAINTS block`
 
-Use `ThinkTime:idea-nebula` to generate candidate ideas first, and
-`ThinkTime:swot-analysis` for
+Use `think-time:idea-nebula` to generate candidate ideas first, and
+`think-time:swot-analysis` for
 strategic positioning rather than event-scoped judging.

@@ -20,12 +20,12 @@ Naive LLM brainstorming reliably produces the **modal region**: the same schedul
 ## Usage
 
 ```
-/ThinkTime:idea-nebula <topic...> [--founder <desc>] [--context <path>] [--wild <n>]
+/think-time:idea-nebula <topic...> [--founder <desc>] [--context <path>] [--wild <n>]
              [--banlist] [--no-demand] [--demand-top <n>] [--plain]
              [--write-to <path>] [--force]
 ```
 
-Zero-ceremony default: `/ThinkTime:idea-nebula tools for indie coffee shops` runs the full pipeline — four generators, blind ranking, demand-check on the top 5, barbell report.
+Zero-ceremony default: `/think-time:idea-nebula tools for indie coffee shops` runs the full pipeline — four generators, blind ranking, demand-check on the top 5, barbell report.
 
 ## Pipeline
 
@@ -54,5 +54,5 @@ SAVE      offers to write the report to a file (default
 
 ```
 claude plugin marketplace add z0rd0n88/think-time
-claude plugin install ThinkTime@thinktime
+claude plugin install think-time@thinktime
 ```

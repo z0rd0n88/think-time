@@ -67,9 +67,9 @@ These two rules are what makes the panel an actual stress test rather than a com
 
 You have a non-trivial design choice, the trade-offs aren't obvious, and you want **a real answer with a recommendation** — not a balanced list of bullet points.
 
-Triggers: `/ThinkTime:i-cant-even`, or say "i cant even" in chat.
+Triggers: `/think-time:i-cant-even`, or say "i cant even" in chat.
 
-User-invoked only. The skill never auto-triggers on design-shaped questions — those get answered inline with at most a "want me to run `/ThinkTime:i-cant-even` on this?" suggestion. You stay in control of whether the full panel runs.
+User-invoked only. The skill never auto-triggers on design-shaped questions — those get answered inline with at most a "want me to run `/think-time:i-cant-even` on this?" suggestion. You stay in control of whether the full panel runs.
 
 ## Companion: `grill-me`
 
@@ -79,7 +79,7 @@ Matt Pocock's `grill-me` skill is interview-only — it stress-tests your plan v
 
 ```bash
 claude plugin marketplace add z0rd0n88/think-time
-claude plugin install ThinkTime@thinktime
+claude plugin install think-time@thinktime
 ```
 
 ## Layout

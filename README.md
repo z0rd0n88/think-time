@@ -19,7 +19,7 @@ It is one Claude Code plugin with nine skills, distributed through this reposito
 ## See it work
 
 ```text
-/ThinkTime:idea-nebula tools for indie coffee shops
+/think-time:idea-nebula tools for indie coffee shops
 ```
 
 That one line runs the full pipeline. Four generators work in parallel and blind to each other. A ranker runs round-robin duels. Up to five live demand checks follow. You get back a report with fixed headings (shape shown, content abbreviated):
@@ -45,19 +45,19 @@ Generic ideas don't make the shortlist. The ranker names them as the **modal reg
 
 ## Skills
 
-All skills run under the `/ThinkTime:` namespace.
+All skills run under the `/think-time:` namespace (`/ThinkTime:` before 2.0.0).
 
 | Skill | Command | What it does | How it works | Use when |
 |---|---|---|---|---|
-| `idea-nebula` | `/ThinkTime:idea-nebula` | Research-backed brainstorm that returns a demand-checked shortlist | 4 parallel entropy-source generators, then a blind both-orders duel ranker, then parallel live demand checks, then a barbell report | You need ideas beyond the obvious first pass |
-| `idea-nebula-product` | `/ThinkTime:idea-nebula-product` | Product-first sibling of `idea-nebula`: ideas ranked on usability, originality and usefulness to users, not profit | Same 4 parallel generators, then 3 blind single-axis judges build a rating matrix, then a live user-check tests whether real people have the problem; revenue, market size and founder fit are not scored | Side projects, open-source tools or free apps that need not make money |
-| `idea-panel` | `/ThinkTime:idea-panel` | Explores a topic through distinct mental-model lenses | 3–4 parallel lens agents (first-principles, jobs-to-be-done, inversion, effectuation) feed a synthesizer that clusters and ranks; opt-in `critical-thinking` lens attacks the framing | You want the same space seen through several frames |
-| `hackathon-idea-nebula` | `/ThinkTime:hackathon-idea-nebula` | Candidate projects for one specific hackathon | idea-nebula's architecture retargeted: `stage` and `recon` generators, feasibility and prior-art checks instead of demand checks, Safe/Swing demo barbell | You have an event and no idea yet |
-| `hackathon-judge` | `/ThinkTime:hackathon-judge` | "Worth building?" and "would it win?", scored separately | Rubric built from the event's rules, a 4-judge panel with conflicting incentives, disagreement report, verdict ladder, hour-by-hour build plan | You have an idea and the event rules |
-| `i-cant-even` | `/ThinkTime:i-cant-even` | Design-decision advisor with a recommendation memo | Orient on the repo, grill one question at a time, then a 4-persona parallel panel (Conservative, Balanced, Aggressive, Critical Thinker) with anti-bias synthesis rules | A non-trivial design choice with unclear trade-offs |
-| `swot-analysis` | `/ThinkTime:swot-analysis` | Full SWOT with cross-quadrant strategy | Structured single-agent analysis: four quadrants, then SO/WO/ST/WT pairings, then recommendations that each cite their pairing | Strategic assessment of a product or position |
-| `improve-me` | `/ThinkTime:improve-me` | Audits *how you use* Claude Code | A stdlib Python collector reduces session transcripts, git history and config to ~35 KB of derived signals, then six evidence-cited lenses rank the findings | Monthly self-audit of your harness and habits |
-| `versus` | `/ThinkTime:versus-compare` | Head-to-head benchmark of two skills or two agents | Python CLI: N paired runs in isolated git worktrees, a deterministic gate plus a grader, a blind comparator, Wilson intervals and a sign test | Choosing between two prompt or agent designs on evidence |
+| `idea-nebula` | `/think-time:idea-nebula` | Research-backed brainstorm that returns a demand-checked shortlist | 4 parallel entropy-source generators, then a blind both-orders duel ranker, then parallel live demand checks, then a barbell report | You need ideas beyond the obvious first pass |
+| `idea-nebula-product` | `/think-time:idea-nebula-product` | Product-first sibling of `idea-nebula`: ideas ranked on usability, originality and usefulness to users, not profit | Same 4 parallel generators, then 3 blind single-axis judges build a rating matrix, then a live user-check tests whether real people have the problem; revenue, market size and founder fit are not scored | Side projects, open-source tools or free apps that need not make money |
+| `idea-panel` | `/think-time:idea-panel` | Explores a topic through distinct mental-model lenses | 3–4 parallel lens agents (first-principles, jobs-to-be-done, inversion, effectuation) feed a synthesizer that clusters and ranks; opt-in `critical-thinking` lens attacks the framing | You want the same space seen through several frames |
+| `hackathon-idea-nebula` | `/think-time:hackathon-idea-nebula` | Candidate projects for one specific hackathon | idea-nebula's architecture retargeted: `stage` and `recon` generators, feasibility and prior-art checks instead of demand checks, Safe/Swing demo barbell | You have an event and no idea yet |
+| `hackathon-judge` | `/think-time:hackathon-judge` | "Worth building?" and "would it win?", scored separately | Rubric built from the event's rules, a 4-judge panel with conflicting incentives, disagreement report, verdict ladder, hour-by-hour build plan | You have an idea and the event rules |
+| `i-cant-even` | `/think-time:i-cant-even` | Design-decision advisor with a recommendation memo | Orient on the repo, grill one question at a time, then a 4-persona parallel panel (Conservative, Balanced, Aggressive, Critical Thinker) with anti-bias synthesis rules | A non-trivial design choice with unclear trade-offs |
+| `swot-analysis` | `/think-time:swot-analysis` | Full SWOT with cross-quadrant strategy | Structured single-agent analysis: four quadrants, then SO/WO/ST/WT pairings, then recommendations that each cite their pairing | Strategic assessment of a product or position |
+| `improve-me` | `/think-time:improve-me` | Audits *how you use* Claude Code | A stdlib Python collector reduces session transcripts, git history and config to ~35 KB of derived signals, then six evidence-cited lenses rank the findings | Monthly self-audit of your harness and habits |
+| `versus` | `/think-time:versus-compare` | Head-to-head benchmark of two skills or two agents | Python CLI: N paired runs in isolated git worktrees, a deterministic gate plus a grader, a blind comparator, Wilson intervals and a sign test | Choosing between two prompt or agent designs on evidence |
 
 ---
 
@@ -153,34 +153,34 @@ These patterns repeat across the skills:
 
 ```bash
 claude plugin marketplace add z0rd0n88/think-time
-claude plugin install ThinkTime@thinktime
+claude plugin install think-time@thinktime
 ```
 
 Every skill except `improve-me` prints its options with `-h`:
 
 ```text
-/ThinkTime:idea-nebula --help
+/think-time:idea-nebula --help
 ```
 
 ## Usage examples
 
 ```text
 # Ideation
-/ThinkTime:idea-nebula developer tooling for Claude Code plugin authors --wild 2
-/ThinkTime:idea-nebula compliance automation --founder "ex-auditor, no coding background" --banlist
-/ThinkTime:idea-panel loyalty rewards for indie coffee shops --panel-size 3
+/think-time:idea-nebula developer tooling for Claude Code plugin authors --wild 2
+/think-time:idea-nebula compliance automation --founder "ex-auditor, no coding background" --banlist
+/think-time:idea-panel loyalty rewards for indie coffee shops --panel-size 3
 
 # Decisions
-/ThinkTime:i-cant-even should session state live in Redis or Postgres?
-/ThinkTime:swot-analysis docs/product-brief.md
+/think-time:i-cant-even should session state live in Redis or Postgres?
+/think-time:swot-analysis docs/product-brief.md
 
 # Hackathons (paste a filled RULES AND CONSTRAINTS block with the command)
-/ThinkTime:hackathon-idea-nebula "no LLM wrappers" --category "Best use of <sponsor API>"
-/ThinkTime:hackathon-judge my-idea.md --category technical
+/think-time:hackathon-idea-nebula "no LLM wrappers" --category "Best use of <sponsor API>"
+/think-time:hackathon-judge my-idea.md --category technical
 
 # Self-audit and benchmarking
-/ThinkTime:improve-me --days 30
-/ThinkTime:versus-compare agents/terse-reviewer.md agents/verbose-reviewer.md --fixture readonly-reviewer-diff-audit --quick
+/think-time:improve-me --days 30
+/think-time:versus-compare agents/terse-reviewer.md agents/verbose-reviewer.md --fixture readonly-reviewer-diff-audit --quick
 ```
 
 `versus` can also run directly as a CLI:
@@ -198,7 +198,7 @@ Each skill's own README has the full flag reference.
 
 ```text
 .
-├── .claude-plugin/marketplace.json     # marketplace "thinktime" → plugin "ThinkTime"
+├── .claude-plugin/marketplace.json     # marketplace "thinktime" → plugin "think-time"
 ├── AGENTS.md                           # repository rules for contributors and agents
 └── ThinkTime/                          # the plugin
     ├── .claude-plugin/plugin.json      # sole plugin manifest; explicit skill/command arrays
@@ -224,9 +224,9 @@ Each skill keeps its `SKILL.md` as a thin orchestration contract. Agent briefs, 
 
 ## Development
 
-- **One plugin, one marketplace.** The repository root is the marketplace (`thinktime`), and `ThinkTime/` is the only plugin. The marketplace entry name and the manifest name must both stay `ThinkTime`.
+- **One plugin, one marketplace.** The repository root is the marketplace (`thinktime`), and `ThinkTime/` is the only plugin. The marketplace entry name and the manifest name must both stay `think-time`: claude.ai only accepts lowercase letters, numbers and hyphens in a plugin name.
 - **Adding a skill.** Create `ThinkTime/<slug>/` with `skills/<slug>/SKILL.md`, then register that directory in the explicit `skills` array of `ThinkTime/.claude-plugin/plugin.json`. Put the usage hint in the frontmatter `argument-hint`. Do not add a `commands/<slug>.md` wrapper with the skill's name: it shadows the skill (#4); only `versus` keeps a differently named wrapper. Runtime paths use `${CLAUDE_PLUGIN_ROOT}`.
-- **Releasing.** Bump `version` in **both** `ThinkTime/.claude-plugin/plugin.json` and the plugin entry (and `metadata.version`) in `.claude-plugin/marketplace.json` for every shipped change. Both are currently `1.5.1`.
+- **Releasing.** Bump `version` in **both** `ThinkTime/.claude-plugin/plugin.json` and the plugin entry (and `metadata.version`) in `.claude-plugin/marketplace.json` for every shipped change. Both are currently `2.0.0`.
 - **Workflow.** Every tracked change goes through a feature branch and a pull request.
 - **Tests.** The `versus` harness has a stdlib-only runtime. pytest is the only test dependency:
 

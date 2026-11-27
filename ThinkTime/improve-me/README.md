@@ -10,7 +10,7 @@ doing for you.
 
 ## Invocation
 
-`/ThinkTime:improve-me [--days N]`, or ask directly ("where am I not following best practices?",
+`/think-time:improve-me [--days N]`, or ask directly ("where am I not following best practices?",
 "what harness changes should I make?"). Default window is 30 days.
 
 ## Why it needs a script
